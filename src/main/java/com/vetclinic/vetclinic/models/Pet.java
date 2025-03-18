@@ -1,11 +1,15 @@
 package com.vetclinic.vetclinic.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Setter
+@Getter
 @Entity
-@Table(name = "tb_pet")
+@Table(name = "pet")
 public class Pet {
 
     @Id
@@ -25,54 +29,6 @@ public class Pet {
         this.breed = breed;
         this.size = size;
         this.weight = weight;
-        this.sex = sex;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
-    public PetSex getSex() {
-        return sex;
-    }
-
-    public void setSex(PetSex sex) {
         this.sex = sex;
     }
 
