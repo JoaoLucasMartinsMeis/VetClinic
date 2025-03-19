@@ -16,9 +16,9 @@ public class Diegnostic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    String consultationCause;
-    String Consideration;
-    String Treatment;
+    private String consultationCause;
+    private String Consideration;
+    private String Treatment;
 
     public Diegnostic() {}
 
