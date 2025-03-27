@@ -1,11 +1,11 @@
 package com.vetclinic.vetclinic.dtos;
 
-import java.time.Instant;
+import java.util.Date;
 
 public class ConsultationAgendaDTO {
 
     private Long id;
-    private Instant date;
+    private Date date;
     private String description;
 
     public ConsultationAgendaDTO() {}
@@ -17,10 +17,10 @@ public class ConsultationAgendaDTO {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public Date getDate() {
         return date;
     }
-    public void setDate(Instant date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

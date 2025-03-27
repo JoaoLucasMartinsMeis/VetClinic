@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/vetclinic/vets")
 public class VeterinaryResource {
@@ -22,6 +24,13 @@ public class VeterinaryResource {
         return ResponseEntity.ok(veterinaryService.convertVeterinarytoVeterinaryDTO(veterinary));
     }
 
+    @Transactional()
+    @GetMapping("/name")
+    public ResponseEntity<List<VeterinaryDTO>> findVeterinaryByName(@RequestParam String name) {
+        VeterinaryDTO veterinaryDTO = veterinaryService.findVeterinaryByName(name);
+        return ResponseEntity.ok(List.of(veterinaryDTO));
+    }
+    
     @Transactional
     @PostMapping()
     public ResponseEntity<VeterinaryDTO> createVeterinary(@RequestBody VeterinaryDTO veterinaryDTO) {

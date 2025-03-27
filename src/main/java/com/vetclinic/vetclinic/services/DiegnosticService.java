@@ -25,12 +25,6 @@ public class DiegnosticService {
                         new IllegalArgumentException("Diegnostic not found"));
     }
 
-    public DiegnosticDTO findDiegnosticByName(String name) {
-        return convertDiegnostictoDiegnosticDTO(diegnosticRepository.findByName(name)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Diegnostic not found")));
-    }
-
     public DiegnosticDTO updateDiegnostic(DiegnosticDTO diegnosticDTO) {
         if (isNull(diegnosticDTO.getId())) {
             throw new IllegalArgumentException("Diegnostic not found");

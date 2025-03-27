@@ -1,11 +1,12 @@
 package com.vetclinic.vetclinic.dtos;
 
 import java.time.Instant;
+import java.util.Date;
 
 public class ConsultationDTO {
 
     private Long id;
-    private Instant date;
+    private Date date;
     private int consultory;
     private double price;
     private String requiredExams;
@@ -19,10 +20,10 @@ public class ConsultationDTO {
         this.id = id;
     }
 
-    public Instant getDate() {
+    public Date getDate() {
         return date;
     }
-    public void setDate(Instant date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

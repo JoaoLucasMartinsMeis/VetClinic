@@ -8,5 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface DiegnosticRepository extends JpaRepository<Diegnostic, Long> {
-    Optional<Diegnostic> findByName(String name);
 }

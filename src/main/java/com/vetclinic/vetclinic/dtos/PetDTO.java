@@ -1,11 +1,13 @@
 package com.vetclinic.vetclinic.dtos;
 
+import com.vetclinic.vetclinic.models.PetAnimal;
 import com.vetclinic.vetclinic.models.PetSex;
 
 public class PetDTO {
 
     private Long id;
     private String name;
+    private PetAnimal animal;
     private String breed;
     private String size;
     private String weight;
@@ -25,6 +27,13 @@ public class PetDTO {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    public PetAnimal getAnimal() {
+        return animal;
+    }
+    public void setAnimal(PetAnimal animal) {
+        this.animal = animal;
     }
 
     public String getBreed() {

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.Instant;
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -16,12 +17,12 @@ public class ConsultationAgenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Instant date;
+    private Date date;
     private String description;
 
     public ConsultationAgenda() {}
 
-    public ConsultationAgenda(Long id, Instant date, String description) {
+    public ConsultationAgenda(Long id, Date date, String description) {
         this.date = date;
         this.description = description;
     }

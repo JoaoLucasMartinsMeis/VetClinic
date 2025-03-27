@@ -6,6 +6,8 @@ import com.vetclinic.vetclinic.repositories.ConsultationAgendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 import static java.util.Objects.isNull;
 
 @Service
@@ -25,8 +27,8 @@ public class ConsultationAgendaService {
                         new IllegalArgumentException("ConsultationAgenda not found"));
     }
 
-    public ConsultationAgendaDTO findConsultationAgendaByName(String name) {
-        return convertConsultationAgendatoConsultationAgendaDTO(consultationAgendaRepository.findByName(name)
+    public ConsultationAgendaDTO findConsultationAgendaByDate(Date date) {
+        return convertConsultationAgendatoConsultationAgendaDTO(consultationAgendaRepository.findByDate(date)
                 .orElseThrow(() ->
                         new IllegalArgumentException("ConsultationAgenda not found")));
     }

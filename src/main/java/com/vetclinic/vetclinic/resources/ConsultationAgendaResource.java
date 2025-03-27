@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
+
 @RestController
 @RequestMapping("/vetclinic/consultAgenda")
 public class ConsultationAgendaResource {
@@ -20,6 +23,13 @@ public class ConsultationAgendaResource {
     public ResponseEntity<ConsultationAgendaDTO> findById(@PathVariable Long id) {
         ConsultationAgenda consultationAgenda = consultationAgendaService.findConsultationAgendaById(id);
         return ResponseEntity.ok(consultationAgendaService.convertConsultationAgendatoConsultationAgendaDTO(consultationAgenda));
+    }
+
+    @Transactional()
+    @GetMapping("/date")
+    public ResponseEntity<List<ConsultationAgendaDTO>> findConsultationAgendaByDate(@RequestParam Date date) {
+        ConsultationAgendaDTO consultationAgendaDTO = consultationAgendaService.findConsultationAgendaByDate(date);
+        return ResponseEntity.ok(List.of(consultationAgendaDTO));
     }
 
     @Transactional

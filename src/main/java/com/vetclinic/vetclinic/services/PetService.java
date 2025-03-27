@@ -53,6 +53,7 @@ public class PetService {
         Pet pet = new Pet();
         pet.setId(petDTO.getId());
         pet.setName(petDTO.getName());
+        pet.setAnimal(petDTO.getAnimal());
         pet.setBreed(petDTO.getBreed());
         pet.setSize(petDTO.getSize());
         pet.setWeight(petDTO.getWeight());
@@ -64,6 +65,7 @@ public class PetService {
         PetDTO petDTO = new PetDTO();
         petDTO.setId(pet.getId());
         petDTO.setName(pet.getName());
+        petDTO.setAnimal(pet.getAnimal());
         petDTO.setBreed(pet.getBreed());
         petDTO.setSize(pet.getSize());
         petDTO.setWeight(pet.getWeight());
