@@ -1,5 +1,7 @@
 package com.vetclinic.vetclinic.models;
 
+import com.vetclinic.vetclinic.Enum.PetAnimal;
+import com.vetclinic.vetclinic.Enum.PetSex;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,12 @@ public class Pet {
     private String weight;
     private PetSex sex;
 
+    @ManyToMany
+    @JoinTable(name = "pet_petOwner",
+            joinColumns = @JoinColumn(name = "pet_id"),
+            inverseJoinColumns = @JoinColumn(name = "petOwner_id"))
+    private Set<PetOwner> petOwners = new HashSet<>();
+
     public Pet() {}
 
     public Pet(Long id, String name, String breed, String size, String weight, PetSex sex, PetAnimal animal) {
@@ -36,12 +44,6 @@ public class Pet {
         this.weight = weight;
         this.sex = sex;
     }
-
-    @ManyToMany
-    @JoinTable(name = "pet_petOwner",
-            joinColumns = @JoinColumn(name = "pet_id"),
-            inverseJoinColumns = @JoinColumn(name = "petOwner_id"))
-    private Set<PetOwner> petOwners = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

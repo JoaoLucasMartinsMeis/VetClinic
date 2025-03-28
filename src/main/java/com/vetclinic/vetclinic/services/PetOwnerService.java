@@ -12,6 +12,8 @@ import static java.util.Objects.isNull;
 public class PetOwnerService {
     @Autowired
     private PetOwnerRepository petOwnerRepository;
+    @Autowired
+    private PetService petService;
 
     public PetOwnerDTO savePetOwner(PetOwnerDTO petOwnerDTO) {
         PetOwner petOwner = convertPetOwnerDTOtoPetOwner(petOwnerDTO);
@@ -56,6 +58,7 @@ public class PetOwnerService {
         petOwner.setEmail(petOwnerDTO.getEmail());
         petOwner.setPhone(petOwnerDTO.getPhone());
         petOwner.setAddress(petOwnerDTO.getAddress());
+        petOwner.setPets(petService.convertListPetDTOT0Pet(petOwnerDTO.getPets()));
         return petOwner;
     }
 
@@ -68,6 +71,7 @@ public class PetOwnerService {
         petOwnerDTO.setEmail(petOwner.getEmail());
         petOwnerDTO.setPhone(petOwner.getPhone());
         petOwnerDTO.setAddress(petOwner.getAddress());
+        petOwnerDTO.setPets(petService.convertListPetT0PetDTO(petOwner.getPets()));
         return petOwnerDTO;
     }
 }

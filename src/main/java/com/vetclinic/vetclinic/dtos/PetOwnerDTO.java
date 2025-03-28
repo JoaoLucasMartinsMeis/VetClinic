@@ -1,5 +1,7 @@
 package com.vetclinic.vetclinic.dtos;
 
+import java.util.Set;
+
 public class PetOwnerDTO {
 
     private Long id;
@@ -8,6 +10,7 @@ public class PetOwnerDTO {
     private String email;
     private String phone;
     private String address;
+    private Set<PetDTO> pets;
 
     public PetOwnerDTO() {}
 
@@ -51,5 +54,13 @@ public class PetOwnerDTO {
     }
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<PetDTO> getPets() {
+        return pets;
+    }
+
+    public void setPets(Set<PetDTO> pets) {
+        this.pets = pets;
     }
 }

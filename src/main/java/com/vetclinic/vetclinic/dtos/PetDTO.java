@@ -1,7 +1,7 @@
 package com.vetclinic.vetclinic.dtos;
 
-import com.vetclinic.vetclinic.models.PetAnimal;
-import com.vetclinic.vetclinic.models.PetSex;
+import com.vetclinic.vetclinic.Enum.PetAnimal;
+import com.vetclinic.vetclinic.Enum.PetSex;
 
 public class PetDTO {
 

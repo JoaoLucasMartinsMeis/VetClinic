@@ -1,6 +1,5 @@
 package com.vetclinic.vetclinic.dtos;
 
-import java.time.Instant;
 import java.util.Date;
 
 public class ConsultationDTO {
@@ -10,6 +9,9 @@ public class ConsultationDTO {
     private int consultory;
     private double price;
     private String requiredExams;
+    private String consultationCause;
+    private String diegnostic;
+    private String Treatment;
 
     public ConsultationDTO() {}
 
@@ -46,5 +48,26 @@ public class ConsultationDTO {
     }
     public void setRequiredExams(String requiredExams) {
         this.requiredExams = requiredExams;
+    }
+
+    public String getConsultationCause() {
+        return consultationCause;
+    }
+    public void setConsultationCause(String consultationCause) {
+        this.consultationCause = consultationCause;
+    }
+
+    public String getDiegnostic() {
+        return diegnostic;
+    }
+    public void setDiegnostic(String diegnostic) {
+        this.diegnostic = diegnostic;
+    }
+
+    public String getTreatment() {
+        return Treatment;
+    }
+    public void setTreatment(String treatment) {
+        Treatment = treatment;
     }
 }

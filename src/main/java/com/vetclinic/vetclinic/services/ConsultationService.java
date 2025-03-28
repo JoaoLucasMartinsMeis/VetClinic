@@ -57,6 +57,9 @@ public class ConsultationService {
         consultation.setConsultory(consultationDTO.getConsultory());
         consultation.setPrice(consultationDTO.getPrice());
         consultation.setRequiredExams(consultationDTO.getRequiredExams());
+        consultation.setConsultationCause(consultationDTO.getConsultationCause());
+        consultation.setDiegnostic(consultationDTO.getDiegnostic());
+        consultation.setTreatment(consultationDTO.getTreatment());
         return consultation;
     }
 
@@ -67,6 +70,9 @@ public class ConsultationService {
         consultationDTO.setConsultory(consultation.getConsultory());
         consultationDTO.setPrice(consultation.getPrice());
         consultationDTO.setRequiredExams(consultation.getRequiredExams());
+        consultationDTO.setConsultationCause(consultation.getConsultationCause());
+        consultationDTO.setDiegnostic(consultation.getDiegnostic());
+        consultationDTO.setTreatment(consultation.getTreatment());
         return consultationDTO;
     }
 }

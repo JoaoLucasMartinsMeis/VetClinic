@@ -1,4 +1,4 @@
-package com.vetclinic.vetclinic.models;
+package com.vetclinic.vetclinic.Enum;
 
 public enum PetAnimal {
     DOG("Dog"),

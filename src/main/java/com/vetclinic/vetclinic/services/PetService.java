@@ -7,6 +7,10 @@ import com.vetclinic.vetclinic.repositories.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import static java.util.Objects.isNull;
 
 @Service
@@ -63,7 +67,7 @@ public class PetService {
 
     public PetDTO convertPettoPetDTO(Pet pet) {
         PetDTO petDTO = new PetDTO();
-        petDTO.setId(pet.getId());
+        petDTO.setId(pet.getId()); //nao funciona
         petDTO.setName(pet.getName());
         petDTO.setAnimal(pet.getAnimal());
         petDTO.setBreed(pet.getBreed());
@@ -71,5 +75,13 @@ public class PetService {
         petDTO.setWeight(pet.getWeight());
         petDTO.setSex(pet.getSex());
         return petDTO;
+    }
+
+    public Set<Pet> convertListPetDTOT0Pet(Set<PetDTO> pets) {
+        return pets.stream().map(this::convertPetDTOtoPet).collect(Collectors.toSet());
+    }
+
+    public Set<PetDTO> convertListPetT0PetDTO(Set<Pet> pets) {
+        return pets.stream().map(this::convertPettoPetDTO).collect(Collectors.toSet());
     }
 }

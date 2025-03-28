@@ -24,7 +24,7 @@ public class PetOwner {
     private String phone;
     private String address;
 
-    @ManyToMany(mappedBy = "pets")
+    @ManyToMany(mappedBy = "petOwners")
     private Set<Pet> pets = new HashSet<>();
 
     public PetOwner() {}
