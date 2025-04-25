@@ -49,4 +49,12 @@ public class Consultation {
     public int hashCode() {
         return Objects.hash(id, date, consultory, price, requiredExams, consultationCause, diegnostic, treatment);
     }
+
+    @ManyToOne
+    @JoinColumn(name = "pet")
+    private Pet pet;
+
+    @ManyToOne
+    @JoinColumn(name = "veterinary")
+    private Veterinary veterinary;
 }

@@ -24,9 +24,6 @@ public class PetOwner {
     private String phone;
     private String address;
 
-    @ManyToMany(mappedBy = "petOwners")
-    private Set<Pet> pets = new HashSet<>();
-
     public PetOwner() {}
 
     public PetOwner(Long id, String cpf, String name, String email, String phone, String address) {
@@ -35,6 +32,15 @@ public class PetOwner {
         this.email = email;
         this.phone = phone;
         this.address = address;
+    }
+
+    public void addPet(Pet pet) {
+        pets.add(pet);
+        pet.getPetOwners().add(this);
+    }
+    public void removePet(Pet pet) {
+        pets.remove(pet);
+        pet.getPetOwners().remove(this);
     }
 
     @Override
@@ -48,4 +54,16 @@ public class PetOwner {
     public int hashCode() {
         return Objects.hash(id, cpf, name, email, phone, address);
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "petOwner_pet",
+            joinColumns = @JoinColumn(name = "petOwner_id"),
+            inverseJoinColumns = @JoinColumn(name = "pet_id")
+    )
+    private Set<Pet> pets = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "consultationAgenda")
+    private ConsultationAgenda consultationAgenda;
 }

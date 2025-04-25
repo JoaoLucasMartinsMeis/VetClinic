@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 @Setter
@@ -39,4 +40,11 @@ public class Veterinary {
     public int hashCode() {
         return Objects.hash(id, cpf, name, officeHours);
     }
+
+    @OneToMany(mappedBy = "veterinarys")
+    private List<Consultation> consultations;
+
+    @ManyToOne
+    @JoinColumn(name = "consultationAgenda")
+    private ConsultationAgenda consultationAgenda;
 }

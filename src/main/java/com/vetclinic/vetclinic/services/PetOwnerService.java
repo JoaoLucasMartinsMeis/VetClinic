@@ -1,8 +1,11 @@
 package com.vetclinic.vetclinic.services;
 
 import com.vetclinic.vetclinic.dtos.PetOwnerDTO;
+import com.vetclinic.vetclinic.models.Pet;
 import com.vetclinic.vetclinic.models.PetOwner;
 import com.vetclinic.vetclinic.repositories.PetOwnerRepository;
+import com.vetclinic.vetclinic.repositories.PetRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ public class PetOwnerService {
     private PetOwnerRepository petOwnerRepository;
     @Autowired
     private PetService petService;
+    private PetRepository petRepository;
 
     public PetOwnerDTO savePetOwner(PetOwnerDTO petOwnerDTO) {
         PetOwner petOwner = convertPetOwnerDTOtoPetOwner(petOwnerDTO);
@@ -48,6 +52,28 @@ public class PetOwnerService {
 
     public void deletePetOwner(Long id) {
         petOwnerRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void addPetOwnerToPet(Long petOwnerId, Long petId) {
+        PetOwner petOwner = petOwnerRepository.findById(petOwnerId)
+                .orElseThrow(() -> new RuntimeException("PetOwner not found"));
+        Pet pet = petRepository.findById(petId)
+                .orElseThrow(() -> new RuntimeException("Pet not found"));
+
+        petOwner.addPet(pet);
+        petOwnerRepository.save(petOwner);
+    }
+
+    @Transactional
+    public void removeAssociationPO(Long petOwnerId, Long petId) {
+        PetOwner petOwner = petOwnerRepository.findById(petOwnerId)
+                .orElseThrow(() -> new RuntimeException("PetOwner not found"));
+        Pet pet = petRepository.findById(petId)
+                .orElseThrow(() -> new RuntimeException("Pet not found"));
+
+        petOwner.removePet(pet);
+        petRepository.save(pet);
     }
 
     public PetOwner convertPetOwnerDTOtoPetOwner(PetOwnerDTO petOwnerDTO) {

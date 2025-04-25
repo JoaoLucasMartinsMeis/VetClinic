@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,12 +27,6 @@ public class Pet {
     private String size;
     private String weight;
     private PetSex sex;
-
-    @ManyToMany
-    @JoinTable(name = "pet_petOwner",
-            joinColumns = @JoinColumn(name = "pet_id"),
-            inverseJoinColumns = @JoinColumn(name = "petOwner_id"))
-    private Set<PetOwner> petOwners = new HashSet<>();
 
     public Pet() {}
 
@@ -56,4 +51,20 @@ public class Pet {
     public int hashCode() {
         return Objects.hash(id, name, animal, breed, size, weight, sex);
     }
+
+    @OneToMany(mappedBy = "pet")
+    private List<Consultation> consultations;
+
+    @ManyToMany(mappedBy = "pet")
+    private Set<PetOwner> petOwners = new HashSet<>();
+
+    public void addPetOwner(PetOwner petOwner) {
+        petOwners.add(petOwner);
+        petOwner.getPets().add(this);
+    }
+    public void removePetOwner(PetOwner petOwner) {
+        petOwners.remove(petOwner);
+        petOwner.getPets().remove(this);
+    }
+
 }

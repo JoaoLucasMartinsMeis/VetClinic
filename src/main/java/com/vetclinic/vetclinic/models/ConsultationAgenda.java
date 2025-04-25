@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -38,4 +39,10 @@ public class ConsultationAgenda {
     public int hashCode() {
         return Objects.hash(id, date, description);
     }
+
+    @OneToMany(mappedBy = "consultationAgenda")
+    private List<PetOwner> petOwners;
+
+    @OneToMany(mappedBy = "consultationAgenda")
+    private List<Veterinary> veterinarys;
 }

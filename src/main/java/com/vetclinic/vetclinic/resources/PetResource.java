@@ -30,7 +30,7 @@ public class PetResource {
         PetDTO petDTO = petService.findPetByName(name);
         return ResponseEntity.ok(List.of(petDTO));
     }
-    
+
     @Transactional
     @PostMapping()
     public ResponseEntity<PetDTO> createPet(@RequestBody PetDTO petDTO) {
@@ -45,9 +45,20 @@ public class PetResource {
 
     @Transactional
     @DeleteMapping()
-    public ResponseEntity<Void> deletePet(@RequestBody PetDTO petDTO)  {
+    public ResponseEntity<Void> deletePet(@RequestBody PetDTO petDTO) {
         petService.deletePet(petDTO.getId());
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/pet/{petId}/petOwner/{petOwnerId}")
+    public String addPetToPetOwner(@PathVariable Long petId, @PathVariable Long petOwnerId) {
+        petService.addPetToPetOwner(petId, petOwnerId);
+        return "Association between Pet and PetOwner added successfully.";
+    }
+
+    @DeleteMapping("/pet/{petId}/petOwner/{petOwnerId}")
+    public String removeAssociation(@PathVariable Long petId, @PathVariable Long petOwnerId) {
+        petService.removeAssociation(petId, petOwnerId);
+        return "Association between Pet and PetOwner removed successfully.";
+    }
 }
