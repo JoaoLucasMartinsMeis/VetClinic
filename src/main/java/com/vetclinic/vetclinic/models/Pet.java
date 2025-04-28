@@ -25,6 +25,7 @@ public class Pet {
     private PetAnimal animal;
     private String breed;
     private String size;
+    private int age;
     private String weight;
     private PetSex sex;
 
@@ -36,6 +37,7 @@ public class Pet {
         this.animal = animal;
         this.breed = breed;
         this.size = size;
+        this.age = age;
         this.weight = weight;
         this.sex = sex;
     }
@@ -44,12 +46,12 @@ public class Pet {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex;
+        return age == pet.age && Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex && Objects.equals(consultations, pet.consultations) && Objects.equals(petOwners, pet.petOwners);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, animal, breed, size, weight, sex);
+        return Objects.hash(id, name, animal, breed, size, age, weight, sex, consultations, petOwners);
     }
 
     @OneToMany(mappedBy = "pet")

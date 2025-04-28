@@ -10,6 +10,7 @@ public class PetDTO {
     private PetAnimal animal;
     private String breed;
     private String size;
+    private int age;
     private String weight;
     private PetSex sex;
 
@@ -39,7 +40,6 @@ public class PetDTO {
     public String getBreed() {
         return breed;
     }
-
     public void setBreed(String breed) {
         this.breed = breed;
     }
@@ -47,15 +47,18 @@ public class PetDTO {
     public String getSize() {
         return size;
     }
-
     public void setSize(String size) {
         this.size = size;
     }
 
+    public int getAge() {
+        return age;}
+    public void setAge(int age) {
+        this.age = age;}
+
     public String getWeight() {
         return weight;
     }
-
     public void setWeight(String weight) {
         this.weight = weight;
     }
@@ -63,7 +66,6 @@ public class PetDTO {
     public PetSex getSex() {
         return sex;
     }
-
     public void setSex(PetSex sex) {
         this.sex = sex;
     }

@@ -91,6 +91,7 @@ public class PetService {
         pet.setAnimal(petDTO.getAnimal());
         pet.setBreed(petDTO.getBreed());
         pet.setSize(petDTO.getSize());
+        pet.setAge(petDTO.getAge());
         pet.setWeight(petDTO.getWeight());
         pet.setSex(petDTO.getSex());
         return pet;
@@ -98,11 +99,12 @@ public class PetService {
 
     public PetDTO convertPettoPetDTO(Pet pet) {
         PetDTO petDTO = new PetDTO();
-        petDTO.setId(pet.getId()); //nao funciona
+        petDTO.setId(pet.getId());
         petDTO.setName(pet.getName());
         petDTO.setAnimal(pet.getAnimal());
         petDTO.setBreed(pet.getBreed());
         petDTO.setSize(pet.getSize());
+        petDTO.setAge(pet.getAge());
         petDTO.setWeight(pet.getWeight());
         petDTO.setSex(pet.getSex());
         return petDTO;
