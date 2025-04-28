@@ -18,23 +18,23 @@ public class Consultation {
     private Long id;
 
     private Date date;
-    private int consultory;
+    private int office;
     private double price;
     private String requiredExams;
     private String consultationCause;
-    private String diegnostic;
+    private String diagnostic;
     private String treatment;
 
     public Consultation() {}
 
-    public Consultation(Long id, Date date, int consultory, double price, String requiredExams, String consultationCause, String diegnostic, String treatment) {
+    public Consultation(Long id, Date date, int office, double price, String requiredExams, String consultationCause, String diagnostic, String treatment) {
         this.id = id;
         this.date = date;
-        this.consultory = consultory;
+        this.office = office;
         this.price = price;
         this.requiredExams = requiredExams;
         this.consultationCause = consultationCause;
-        this.diegnostic = diegnostic;
+        this.diagnostic = diagnostic;
         this.treatment = treatment;
     }
 
@@ -42,12 +42,12 @@ public class Consultation {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Consultation that = (Consultation) o;
-        return consultory == that.consultory && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diegnostic, that.diegnostic) && Objects.equals(treatment, that.treatment);
+        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, consultory, price, requiredExams, consultationCause, diegnostic, treatment);
+        return Objects.hash(id, date, office, price, requiredExams, consultationCause, diagnostic, treatment);
     }
 
     @ManyToOne

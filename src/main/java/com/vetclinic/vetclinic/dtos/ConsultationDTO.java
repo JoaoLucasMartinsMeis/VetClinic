@@ -6,11 +6,11 @@ public class ConsultationDTO {
 
     private Long id;
     private Date date;
-    private int consultory;
+    private int office;
     private double price;
     private String requiredExams;
     private String consultationCause;
-    private String diegnostic;
+    private String diagnostic;
     private String Treatment;
 
     public ConsultationDTO() {}
@@ -29,11 +29,11 @@ public class ConsultationDTO {
         this.date = date;
     }
 
-    public int getConsultory() {
-        return consultory;
+    public int getOffice() {
+        return office;
     }
-    public void setConsultory(int consultory) {
-        this.consultory = consultory;
+    public void setOffice(int office) {
+        this.office = office;
     }
 
     public double getPrice() {
@@ -57,11 +57,11 @@ public class ConsultationDTO {
         this.consultationCause = consultationCause;
     }
 
-    public String getDiegnostic() {
-        return diegnostic;
+    public String getDiagnostic() {
+        return diagnostic;
     }
-    public void setDiegnostic(String diegnostic) {
-        this.diegnostic = diegnostic;
+    public void setDiagnostic(String diagnostic) {
+        this.diagnostic = diagnostic;
     }
 
     public String getTreatment() {

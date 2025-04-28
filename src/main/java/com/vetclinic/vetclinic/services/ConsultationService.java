@@ -54,11 +54,11 @@ public class ConsultationService {
         Consultation consultation = new Consultation();
         consultation.setId(consultationDTO.getId());
         consultation.setDate(consultationDTO.getDate());
-        consultation.setConsultory(consultationDTO.getConsultory());
+        consultation.setOffice(consultationDTO.getOffice());
         consultation.setPrice(consultationDTO.getPrice());
         consultation.setRequiredExams(consultationDTO.getRequiredExams());
         consultation.setConsultationCause(consultationDTO.getConsultationCause());
-        consultation.setDiegnostic(consultationDTO.getDiegnostic());
+        consultation.setDiagnostic(consultationDTO.getDiagnostic());
         consultation.setTreatment(consultationDTO.getTreatment());
         return consultation;
     }
@@ -67,11 +67,11 @@ public class ConsultationService {
         ConsultationDTO consultationDTO = new ConsultationDTO();
         consultationDTO.setId(consultation.getId());
         consultationDTO.setDate(consultation.getDate());
-        consultationDTO.setConsultory(consultation.getConsultory());
+        consultationDTO.setOffice(consultation.getOffice());
         consultationDTO.setPrice(consultation.getPrice());
         consultationDTO.setRequiredExams(consultation.getRequiredExams());
         consultationDTO.setConsultationCause(consultation.getConsultationCause());
-        consultationDTO.setDiegnostic(consultation.getDiegnostic());
+        consultationDTO.setDiagnostic(consultation.getDiagnostic());
         consultationDTO.setTreatment(consultation.getTreatment());
         return consultationDTO;
     }
