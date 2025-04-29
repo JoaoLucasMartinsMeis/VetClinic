@@ -32,12 +32,12 @@ public class ConsultationAgenda {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ConsultationAgenda that = (ConsultationAgenda) o;
-        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(description, that.description);
+        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(description, that.description) && Objects.equals(petOwners, that.petOwners) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(pets, that.pets) && Objects.equals(consultations, that.consultations);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, description);
+        return Objects.hash(id, date, description, petOwners, veterinarys, pets, consultations);
     }
 
     @OneToMany(mappedBy = "consultationAgenda")
@@ -45,4 +45,10 @@ public class ConsultationAgenda {
 
     @OneToMany(mappedBy = "consultationAgenda")
     private List<Veterinary> veterinarys;
+
+    @OneToMany(mappedBy = "consultationAgenda")
+    private List<Pet> pets;
+
+    @OneToMany(mappedBy = "consultationAgenda")
+    private List<Consultation> consultations;
 }

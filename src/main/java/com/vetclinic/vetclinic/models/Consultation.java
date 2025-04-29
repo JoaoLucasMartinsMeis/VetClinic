@@ -42,19 +42,27 @@ public class Consultation {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Consultation that = (Consultation) o;
-        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment);
+        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(consultationAgenda, that.consultationAgenda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, office, price, requiredExams, consultationCause, diagnostic, treatment);
+        return Objects.hash(id, date, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, veterinarys, consultationAgenda);
     }
 
     @ManyToOne
     @JoinColumn(name = "pet")
-    private Pet pet;
+    private Pet pets;
 
     @ManyToOne
     @JoinColumn(name = "veterinary")
-    private Veterinary veterinary;
+    private Veterinary veterinarys;
+
+    @ManyToOne
+    @JoinColumn(name = "petOwner")
+    private PetOwner petOwners;
+
+    @ManyToOne
+    @JoinColumn(name = "consultationAgenda")
+    private ConsultationAgenda consultationAgenda;
 }

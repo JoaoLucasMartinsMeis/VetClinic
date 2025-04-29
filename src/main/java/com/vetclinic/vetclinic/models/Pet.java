@@ -42,24 +42,6 @@ public class Pet {
         this.sex = sex;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Pet pet = (Pet) o;
-        return age == pet.age && Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex && Objects.equals(consultations, pet.consultations) && Objects.equals(petOwners, pet.petOwners);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, animal, breed, size, age, weight, sex, consultations, petOwners);
-    }
-
-    @OneToMany(mappedBy = "pet")
-    private List<Consultation> consultations;
-
-    @ManyToMany(mappedBy = "pet")
-    private Set<PetOwner> petOwners = new HashSet<>();
-
     public void addPetOwner(PetOwner petOwner) {
         petOwners.add(petOwner);
         petOwner.getPets().add(this);
@@ -69,4 +51,25 @@ public class Pet {
         petOwner.getPets().remove(this);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex && Objects.equals(consultations, pet.consultations) && Objects.equals(petOwners, pet.petOwners) && Objects.equals(consultationAgenda, pet.consultationAgenda);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, animal, breed, size, age, weight, sex, consultations, petOwners, consultationAgenda);
+    }
+
+    @OneToMany(mappedBy = "pet")
+    private List<Consultation> consultations;
+
+    @ManyToMany(mappedBy = "pet")
+    private Set<PetOwner> petOwners = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "consultationAgenda")
+    private ConsultationAgenda consultationAgenda;
 }
