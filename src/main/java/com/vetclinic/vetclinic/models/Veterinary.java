@@ -33,18 +33,14 @@ public class Veterinary {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Veterinary that = (Veterinary) o;
-        return Objects.equals(id, that.id) && Objects.equals(cpf, that.cpf) && Objects.equals(name, that.name) && Objects.equals(officeHours, that.officeHours) && Objects.equals(consultations, that.consultations) && Objects.equals(consultationAgenda, that.consultationAgenda);
+        return Objects.equals(id, that.id) && Objects.equals(cpf, that.cpf) && Objects.equals(name, that.name) && Objects.equals(officeHours, that.officeHours) && Objects.equals(consultationsV, that.consultationsV);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cpf, name, officeHours, consultations, consultationAgenda);
+        return Objects.hash(id, cpf, name, officeHours, consultationsV);
     }
 
-    @OneToMany(mappedBy = "veterinary")
-    private List<Consultation> consultations;
-
-    @ManyToOne
-    @JoinColumn(name = "consultationAgenda")
-    private ConsultationAgenda consultationAgenda;
+    @OneToMany
+    private List<Consultation> consultationsV;
 }

@@ -48,12 +48,12 @@ public class PetOwner {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         PetOwner petOwner = (PetOwner) o;
-        return Objects.equals(id, petOwner.id) && Objects.equals(cpf, petOwner.cpf) && Objects.equals(name, petOwner.name) && Objects.equals(email, petOwner.email) && Objects.equals(phone, petOwner.phone) && Objects.equals(address, petOwner.address) && Objects.equals(pets, petOwner.pets);
+        return Objects.equals(id, petOwner.id) && Objects.equals(cpf, petOwner.cpf) && Objects.equals(name, petOwner.name) && Objects.equals(email, petOwner.email) && Objects.equals(phone, petOwner.phone) && Objects.equals(address, petOwner.address) && Objects.equals(pets, petOwner.pets) && Objects.equals(consultationsO, petOwner.consultationsO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cpf, name, email, phone, address, pets);
+        return Objects.hash(id, cpf, name, email, phone, address, pets, consultationsO);
     }
 
     @ManyToMany
@@ -64,6 +64,6 @@ public class PetOwner {
     )
     private Set<Pet> pets = new HashSet<>();
 
-    @OneToMany(mappedBy = "petOwner")
-    private List<Consultation> consultations;
+    @OneToMany
+    private List<Consultation> consultationsO;
 }

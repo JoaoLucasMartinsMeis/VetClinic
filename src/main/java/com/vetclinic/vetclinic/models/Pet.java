@@ -55,21 +55,17 @@ public class Pet {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return age == pet.age && Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex && Objects.equals(consultations, pet.consultations) && Objects.equals(petOwners, pet.petOwners) && Objects.equals(consultationAgenda, pet.consultationAgenda);
+        return age == pet.age && Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex && Objects.equals(consultationP, pet.consultationP) && Objects.equals(petOwners, pet.petOwners);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, animal, breed, size, age, weight, sex, consultations, petOwners, consultationAgenda);
+        return Objects.hash(id, name, animal, breed, size, age, weight, sex, consultationP, petOwners);
     }
 
-    @OneToMany(mappedBy = "pet")
-    private List<Consultation> consultations;
+    @OneToMany
+    private List<Consultation> consultationP;
 
-    @ManyToMany(mappedBy = "pet")
+    @ManyToMany
     private Set<PetOwner> petOwners = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "consultationAgenda")
-    private ConsultationAgenda consultationAgenda;
 }

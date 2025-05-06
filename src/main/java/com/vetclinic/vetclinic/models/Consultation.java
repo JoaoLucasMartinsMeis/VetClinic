@@ -42,27 +42,27 @@ public class Consultation {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Consultation that = (Consultation) o;
-        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(consultationAgenda, that.consultationAgenda);
+        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(petOwners, that.petOwners) && Objects.equals(consultationAgenda, that.consultationAgenda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, veterinarys, consultationAgenda);
+        return Objects.hash(id, date, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, veterinarys, petOwners, consultationAgenda);
     }
 
     @ManyToOne
-    @JoinColumn(name = "pet")
+    @JoinColumn(name = "consultationP")
     private Pet pets;
 
     @ManyToOne
-    @JoinColumn(name = "veterinary")
+    @JoinColumn(name = "consultationV")
     private Veterinary veterinarys;
 
     @ManyToOne
-    @JoinColumn(name = "petOwner")
+    @JoinColumn(name = "consultationO")
     private PetOwner petOwners;
 
     @ManyToOne
-    @JoinColumn(name = "consultationAgenda")
+    @JoinColumn(name = "consultationA")
     private ConsultationAgenda consultationAgenda;
 }
