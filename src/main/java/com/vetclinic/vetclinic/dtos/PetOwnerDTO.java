@@ -10,7 +10,7 @@ public class PetOwnerDTO {
     private String email;
     private String phone;
     private String address;
-    private Set<PetDTO> pets;
+    //private Set<PetDTO> pets;
 
     public PetOwnerDTO() {}
 
@@ -56,11 +56,10 @@ public class PetOwnerDTO {
         this.address = address;
     }
 
-    public Set<PetDTO> getPets() {
-        return pets;
-    }
-
-    public void setPets(Set<PetDTO> pets) {
-        this.pets = pets;
-    }
+    //public Set<PetDTO> getPets() {
+    //    return pets;
+   // }
+   // public void setPets(Set<PetDTO> pets) {
+   //     this.pets = pets;
+    //}
 }

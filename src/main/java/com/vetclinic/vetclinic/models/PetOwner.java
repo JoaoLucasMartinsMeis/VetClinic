@@ -66,4 +66,16 @@ public class PetOwner {
 
     @OneToMany
     private List<Consultation> consultationsO;
+
+    @Override
+    public String toString() {
+        return "PetOwner{" +
+                "address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -68,4 +68,18 @@ public class Pet {
 
     @ManyToMany
     private Set<PetOwner> petOwners = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "sex=" + sex +
+                ", weight='" + weight + '\'' +
+                ", age=" + age +
+                ", size='" + size + '\'' +
+                ", breed='" + breed + '\'' +
+                ", animal=" + animal +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
