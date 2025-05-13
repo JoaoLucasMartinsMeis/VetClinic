@@ -18,13 +18,16 @@ public class ConsultationAgenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date date;
+    private Date startDate;
+    private Date endDate;
     private String description;
 
     public ConsultationAgenda() {}
 
-    public ConsultationAgenda(Long id, Date date, String description) {
-        this.date = date;
+    public ConsultationAgenda(Long id, Date startDate, Date endDate, String description) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
     }
 
@@ -32,12 +35,12 @@ public class ConsultationAgenda {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ConsultationAgenda that = (ConsultationAgenda) o;
-        return Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(description, that.description) && Objects.equals(consultationsA, that.consultationsA);
+        return Objects.equals(id, that.id) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(description, that.description) && Objects.equals(consultationsA, that.consultationsA);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, description, consultationsA);
+        return Objects.hash(id, startDate, endDate, description, consultationsA);
     }
 
     @OneToMany

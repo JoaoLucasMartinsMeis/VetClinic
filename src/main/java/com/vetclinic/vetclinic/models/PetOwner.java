@@ -46,14 +46,15 @@ public class PetOwner {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        PetOwner petOwner = (PetOwner) o;
-        return Objects.equals(id, petOwner.id) && Objects.equals(cpf, petOwner.cpf) && Objects.equals(name, petOwner.name) && Objects.equals(email, petOwner.email) && Objects.equals(phone, petOwner.phone) && Objects.equals(address, petOwner.address) && Objects.equals(pets, petOwner.pets) && Objects.equals(consultationsO, petOwner.consultationsO);
+        if (this == o) return true;
+        if (!(o instanceof PetOwner)) return false;
+        PetOwner that = (PetOwner) o;
+        return id != null && id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cpf, name, email, phone, address, pets, consultationsO);
+        return Objects.hash(id);
     }
 
     @ManyToMany

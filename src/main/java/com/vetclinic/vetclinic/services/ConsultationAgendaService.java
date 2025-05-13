@@ -53,7 +53,8 @@ public class ConsultationAgendaService {
     public ConsultationAgenda convertConsultationAgendaDTOtoConsultationAgenda(ConsultationAgendaDTO consultationAgendaDTO) {
         ConsultationAgenda consultationAgenda = new ConsultationAgenda();
         consultationAgenda.setId(consultationAgendaDTO.getId());
-        consultationAgenda.setDate(consultationAgendaDTO.getDate());
+        consultationAgenda.setStartDate(consultationAgendaDTO.getStartDate());
+        consultationAgenda.setEndDate(consultationAgendaDTO.getEndDate());
         consultationAgenda.setDescription(consultationAgendaDTO.getDescription());
         return consultationAgenda;
     }
@@ -61,7 +62,8 @@ public class ConsultationAgendaService {
     public ConsultationAgendaDTO convertConsultationAgendatoConsultationAgendaDTO(ConsultationAgenda consultationAgenda) {
         ConsultationAgendaDTO consultationAgendaDTO = new ConsultationAgendaDTO();
         consultationAgendaDTO.setId(consultationAgenda.getId());
-        consultationAgendaDTO.setDate(consultationAgenda.getDate());
+        consultationAgendaDTO.setStartDate(consultationAgenda.getStartDate());
+        consultationAgendaDTO.setEndDate(consultationAgenda.getEndDate());
         consultationAgendaDTO.setDescription(consultationAgenda.getDescription());
         return consultationAgendaDTO;
     }

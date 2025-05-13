@@ -53,14 +53,15 @@ public class Pet {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Pet pet = (Pet) o;
-        return age == pet.age && Objects.equals(id, pet.id) && Objects.equals(name, pet.name) && animal == pet.animal && Objects.equals(breed, pet.breed) && Objects.equals(size, pet.size) && Objects.equals(weight, pet.weight) && sex == pet.sex && Objects.equals(consultationP, pet.consultationP) && Objects.equals(petOwners, pet.petOwners);
+        if (this == o) return true;
+        if (!(o instanceof Pet)) return false;
+        Pet that = (Pet) o;
+        return id != null && id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, animal, breed, size, age, weight, sex, consultationP, petOwners);
+        return Objects.hash(id);
     }
 
     @OneToMany
