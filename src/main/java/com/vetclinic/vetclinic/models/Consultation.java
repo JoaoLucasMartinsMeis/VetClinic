@@ -17,7 +17,8 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date date;
+    private Date startDate;
+    private Date endDate;
     private int office;
     private double price;
     private String requiredExams;
@@ -27,9 +28,10 @@ public class Consultation {
 
     public Consultation() {}
 
-    public Consultation(Long id, Date date, int office, double price, String requiredExams, String consultationCause, String diagnostic, String treatment) {
+    public Consultation(Long id, Date startDate, Date endDate, int office, double price, String requiredExams, String consultationCause, String diagnostic, String treatment) {
         this.id = id;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.office = office;
         this.price = price;
         this.requiredExams = requiredExams;
@@ -42,12 +44,12 @@ public class Consultation {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Consultation that = (Consultation) o;
-        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(date, that.date) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(petOwners, that.petOwners) && Objects.equals(consultationAgenda, that.consultationAgenda);
+        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(petOwners, that.petOwners) && Objects.equals(consultationAgenda, that.consultationAgenda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, veterinarys, petOwners, consultationAgenda);
+        return Objects.hash(id, startDate, endDate, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, veterinarys, petOwners, consultationAgenda);
     }
 
     @ManyToOne

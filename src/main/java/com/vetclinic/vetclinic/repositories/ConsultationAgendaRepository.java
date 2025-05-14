@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface ConsultationAgendaRepository extends JpaRepository<ConsultationAgenda, Long> {
-    Optional<ConsultationAgenda> findByDate(Date date);
+    Optional<ConsultationAgenda> findByDate(Date startDate);
 }

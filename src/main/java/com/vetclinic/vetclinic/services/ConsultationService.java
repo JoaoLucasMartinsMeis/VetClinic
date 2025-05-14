@@ -27,8 +27,8 @@ public class ConsultationService {
                         new IllegalArgumentException("Consultation not found"));
     }
 
-    public ConsultationDTO findConsultationByDate(Date date) {
-        return convertConsultationtoConsultationDTO(consultationRepository.findByDate(date)
+    public ConsultationDTO findConsultationByStartDate(Date startDate) {
+        return convertConsultationtoConsultationDTO(consultationRepository.findByStartDate(startDate)
                 .orElseThrow(() ->
                         new IllegalArgumentException("Consultation not found")));
     }
@@ -53,7 +53,8 @@ public class ConsultationService {
     public Consultation convertConsultationDTOtoConsultation(ConsultationDTO consultationDTO) {
         Consultation consultation = new Consultation();
         consultation.setId(consultationDTO.getId());
-        consultation.setDate(consultationDTO.getDate());
+        consultation.setStartDate(consultationDTO.getStartDate());
+        consultation.setEndDate(consultationDTO.getEndDate());
         consultation.setOffice(consultationDTO.getOffice());
         consultation.setPrice(consultationDTO.getPrice());
         consultation.setRequiredExams(consultationDTO.getRequiredExams());
@@ -66,7 +67,8 @@ public class ConsultationService {
     public ConsultationDTO convertConsultationtoConsultationDTO(Consultation consultation) {
         ConsultationDTO consultationDTO = new ConsultationDTO();
         consultationDTO.setId(consultation.getId());
-        consultationDTO.setDate(consultation.getDate());
+        consultationDTO.setStartDate(consultation.getStartDate());
+        consultationDTO.setEndDate(consultation.getEndDate());
         consultationDTO.setOffice(consultation.getOffice());
         consultationDTO.setPrice(consultation.getPrice());
         consultationDTO.setRequiredExams(consultation.getRequiredExams());

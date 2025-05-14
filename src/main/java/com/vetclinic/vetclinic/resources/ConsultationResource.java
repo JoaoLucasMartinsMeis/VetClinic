@@ -27,8 +27,8 @@ public class ConsultationResource {
 
     @Transactional()
     @GetMapping("/date")
-    public ResponseEntity<List<ConsultationDTO>> findConsultationByDate(@RequestParam Date date) {
-        ConsultationDTO consultationDTO = consultationService.findConsultationByDate(date);
+    public ResponseEntity<List<ConsultationDTO>> findConsultationByStartDate(@RequestParam Date startDate) {
+        ConsultationDTO consultationDTO = consultationService.findConsultationByStartDate(startDate);
         return ResponseEntity.ok(List.of(consultationDTO));
     }
 
