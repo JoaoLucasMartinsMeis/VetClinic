@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/vetclinic/pets")
 public class PetResource {
@@ -22,6 +23,12 @@ public class PetResource {
     public ResponseEntity<PetDTO> findById(@PathVariable Long id) {
         Pet pet = petService.findPetById(id);
         return ResponseEntity.ok(petService.convertPettoPetDTO(pet));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<PetDTO>> findAllPets() {
+        List<PetDTO> petDTOs = petService.findAllPets();
+        return ResponseEntity.ok(petDTOs);
     }
 
     @Transactional()

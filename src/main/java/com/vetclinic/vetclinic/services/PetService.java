@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -116,5 +117,12 @@ public class PetService {
 
     public Set<PetDTO> convertListPetT0PetDTO(Set<Pet> pets) {
         return pets.stream().map(this::convertPettoPetDTO).collect(Collectors.toSet());
+    }
+
+    public List<PetDTO> findAllPets() {
+        List<Pet> pets = petRepository.findAll();
+        return pets.stream()
+                .map(this::convertPettoPetDTO)
+                .collect(Collectors.toList());
     }
 }
