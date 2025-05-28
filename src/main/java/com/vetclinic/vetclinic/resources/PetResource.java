@@ -51,9 +51,9 @@ public class PetResource {
     }
 
     @Transactional
-    @DeleteMapping()
-    public ResponseEntity<Void> deletePet(@RequestBody PetDTO petDTO) {
-        petService.deletePet(petDTO.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePet(@PathVariable Long id) {
+        petService.deletePet(id);
         return ResponseEntity.noContent().build();
     }
 

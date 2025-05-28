@@ -2,6 +2,7 @@ package com.vetclinic.vetclinic.dtos;
 
 import com.vetclinic.vetclinic.Enum.PetAnimal;
 import com.vetclinic.vetclinic.Enum.PetSex;
+import com.vetclinic.vetclinic.Enum.PetSize;
 
 public class PetDTO {
 
@@ -9,7 +10,7 @@ public class PetDTO {
     private String name;
     private PetAnimal animal;
     private String breed;
-    private String size;
+    private PetSize size;
     private int age;
     private String weight;
     private PetSex sex;
@@ -44,10 +45,11 @@ public class PetDTO {
         this.breed = breed;
     }
 
-    public String getSize() {
+    public PetSize getSize() {
         return size;
     }
-    public void setSize(String size) {
+
+    public void setSize(PetSize size) {
         this.size = size;
     }
 

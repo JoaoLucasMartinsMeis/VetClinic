@@ -2,6 +2,7 @@ package com.vetclinic.vetclinic.models;
 
 import com.vetclinic.vetclinic.Enum.PetAnimal;
 import com.vetclinic.vetclinic.Enum.PetSex;
+import com.vetclinic.vetclinic.Enum.PetSize;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,14 +25,14 @@ public class Pet {
     private String name;
     private PetAnimal animal;
     private String breed;
-    private String size;
+    private PetSize size;
     private int age;
     private String weight;
     private PetSex sex;
 
     public Pet() {}
 
-    public Pet(Long id, String name, PetAnimal animal, String breed, String size, int age,String weight, PetSex sex) {
+    public Pet(Long id, String name, PetAnimal animal, String breed, PetSize size, int age,String weight, PetSex sex) {
         this.id = id;
         this.name = name;
         this.animal = animal;
