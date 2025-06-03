@@ -44,9 +44,9 @@ public class PetResource {
         return ResponseEntity.ok(petService.savePet(petDTO));
     }
 
-    @Transactional
-    @PutMapping()
-    public ResponseEntity<PetDTO> updatePet(@RequestBody PetDTO petDTO) {
+    @PutMapping("/{id}")
+    public ResponseEntity<PetDTO> updatePet(@PathVariable Long id, @RequestBody PetDTO petDTO) {
+        petDTO.setId(id); // ou use no service
         return ResponseEntity.ok(petService.updatePet(petDTO));
     }
 

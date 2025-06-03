@@ -34,22 +34,28 @@ public class PetOwnerResource {
         return ResponseEntity.ok(List.of(petOwnerDTO));
     }
 
+    @Transactional()
+    @GetMapping("/all")
+    public ResponseEntity<List<PetOwnerDTO>> findPetOwnerAll() {
+        List<PetOwnerDTO> petOwnerDTOs = petOwnerService.findPetOwnerAll();
+        return ResponseEntity.ok(petOwnerDTOs);
+    }
+
     @Transactional
     @PostMapping()
     public ResponseEntity<PetOwnerDTO> createPetOwner(@RequestBody PetOwnerDTO petOwnerDTO) {
         return ResponseEntity.ok(petOwnerService.savePetOwner(petOwnerDTO));
     }
 
-    @Transactional
-    @PutMapping()
-    public ResponseEntity<PetOwnerDTO> updatePetOwner(@RequestBody PetOwnerDTO petOwnerDTO) {
-        return ResponseEntity.ok(petOwnerService.updatePetOwner(petOwnerDTO));
+    @PutMapping("/{id}")
+    public ResponseEntity<PetOwnerDTO> updatePetOwner(@PathVariable Long id, @RequestBody PetOwnerDTO dto) {
+        dto.setId(id);
+        return ResponseEntity.ok(petOwnerService.updatePetOwner(dto));
     }
 
-    @Transactional
-    @DeleteMapping()
-    public ResponseEntity<Void> deletePetOwner(@RequestBody PetOwnerDTO petOwnerDTO)  {
-        petOwnerService.deletePetOwner(petOwnerDTO.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePetOwner(@PathVariable Long id) {
+        petOwnerService.deletePetOwner(id);
         return ResponseEntity.noContent().build();
     }
 

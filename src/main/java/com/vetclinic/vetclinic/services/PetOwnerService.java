@@ -9,6 +9,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static java.util.Objects.isNull;
 
 @Service
@@ -99,5 +102,10 @@ public class PetOwnerService {
         petOwnerDTO.setAddress(petOwner.getAddress());
         //petOwnerDTO.setPets(petService.convertListPetT0PetDTO(petOwner.getPets()));
         return petOwnerDTO;
+    }
+
+    public List<PetOwnerDTO> findPetOwnerAll() {
+        List<PetOwner> petOwners = petOwnerRepository.findAll();
+        return petOwners.stream().map(this::convertPetOwnertoPetOwnerDTO).collect(Collectors.toList());
     }
 }
