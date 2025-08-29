@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://127.0.0.1:5501")
 @RestController
 @RequestMapping("/vetclinic/pets")
 public class PetResource {

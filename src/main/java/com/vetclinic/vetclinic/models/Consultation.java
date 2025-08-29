@@ -44,12 +44,12 @@ public class Consultation {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Consultation that = (Consultation) o;
-        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(veterinarys, that.veterinarys) && Objects.equals(petOwners, that.petOwners) && Objects.equals(consultationAgenda, that.consultationAgenda);
+        return office == that.office && Double.compare(price, that.price) == 0 && Objects.equals(id, that.id) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(requiredExams, that.requiredExams) && Objects.equals(consultationCause, that.consultationCause) && Objects.equals(diagnostic, that.diagnostic) && Objects.equals(treatment, that.treatment) && Objects.equals(pets, that.pets) && Objects.equals(users, that.users) && Objects.equals(petOwners, that.petOwners) && Objects.equals(consultationAgenda, that.consultationAgenda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startDate, endDate, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, veterinarys, petOwners, consultationAgenda);
+        return Objects.hash(id, startDate, endDate, office, price, requiredExams, consultationCause, diagnostic, treatment, pets, users, petOwners, consultationAgenda);
     }
 
     @ManyToOne
@@ -58,7 +58,7 @@ public class Consultation {
 
     @ManyToOne
     @JoinColumn(name = "consultationV")
-    private Veterinary veterinarys;
+    private User users;
 
     @ManyToOne
     @JoinColumn(name = "consultationO")
