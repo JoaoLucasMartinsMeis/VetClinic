@@ -21,7 +21,6 @@ public class UserService {
     public UserDTO saveUser(UserDTO userDTO) {
         User user = convertUserDTOtoUser(userDTO);
 
-        // encode password if present
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         }
@@ -47,7 +46,6 @@ public class UserService {
         User user = userRepository.findById(userDTO.getId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        // update fields (maintain id)
         user.setCpf(userDTO.getCpf());
         user.setName(userDTO.getName());
         user.setOfficeHours(userDTO.getOfficeHours());
@@ -56,7 +54,6 @@ public class UserService {
             user.setRole(Role.valueOf(userDTO.getRole()));
         }
 
-        // update password only if provided
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         }
@@ -77,7 +74,6 @@ public class UserService {
         dto.setOfficeHours(user.getOfficeHours());
         dto.setEmail(user.getEmail());
         dto.setRole(user.getRole() != null ? user.getRole().name() : null);
-        // intentionally do NOT set password in returned DTO
         return dto;
     }
 
@@ -91,14 +87,11 @@ public class UserService {
         if (dto.getRole() != null) {
             user.setRole(Role.valueOf(dto.getRole()));
         } else {
-            // default role
             user.setRole(Role.USER);
         }
-        // Do NOT set password here (set in save method after encoding) or set raw if needed
         return user;
     }
 
-    // helper for authentication
     public User authenticateByEmailAndPassword(String email, String rawPassword) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
