@@ -1,7 +1,7 @@
 package com.vetclinic.vetclinic.Enum;
 
 public enum PetSize {
-    VERYSMALL("Very Small"),
+    VERY_SMALL("Very Small"),
     SMALL("Small"),
     MEDIUM("Medium"),
     LARGE("Large"),

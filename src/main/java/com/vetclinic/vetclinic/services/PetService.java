@@ -28,12 +28,6 @@ public class PetService {
         return convertPettoPetDTO(pet);
     }
 
-    public Pet findPetById(Long id) {
-        return petRepository.findById(id)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Pet not found"));
-    }
-
     public PetDTO findPetByName(String name) {
         return convertPettoPetDTO(petRepository.findByName(name)
                 .orElseThrow(() ->
@@ -83,6 +77,12 @@ public class PetService {
 
         pet.removePetOwner(petOwner);
         petOwnerRepository.save(petOwner);
+    }
+
+    public Pet findPetById(Long id) {
+        return petRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Pet not found"));
     }
 
     public Pet convertPetDTOtoPet(PetDTO petDTO) {
