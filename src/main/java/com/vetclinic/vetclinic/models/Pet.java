@@ -7,10 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -29,8 +26,6 @@ public class Pet {
     private int age;
     private String weight;
     private PetSex sex;
-
-    public Pet() {}
 
     public Pet(Long id, String name, PetAnimal animal, String breed, PetSize size, int age,String weight, PetSex sex) {
         this.id = id;
@@ -65,11 +60,21 @@ public class Pet {
         return Objects.hash(id);
     }
 
-    @OneToMany
-    private List<Consultation> consultationP;
-
     @ManyToMany
+    @JoinTable(
+            name = "pet_petOwner",
+            joinColumns = @JoinColumn(name = "pet_id"),
+            inverseJoinColumns = @JoinColumn(name = "petOwner_id")
+    )
     private Set<PetOwner> petOwners = new HashSet<>();
+
+    @OneToMany(mappedBy = "pets", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Consultation> consultationP = new ArrayList<>();
+
+    public Pet() {
+        this.petOwners = new HashSet<>();
+        this.consultationP = new ArrayList<>();
+    }
 
     @Override
     public String toString() {

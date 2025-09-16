@@ -1,7 +1,10 @@
 package com.vetclinic.vetclinic.resources;
 
+import com.vetclinic.vetclinic.dtos.PetDTO;
 import com.vetclinic.vetclinic.dtos.PetOwnerDTO;
+import com.vetclinic.vetclinic.models.Pet;
 import com.vetclinic.vetclinic.models.PetOwner;
+import com.vetclinic.vetclinic.repositories.PetOwnerRepository;
 import com.vetclinic.vetclinic.services.PetOwnerService;
 import com.vetclinic.vetclinic.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://127.0.0.1:5501")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/vetclinic/petOwners")
 public class PetOwnerResource {
@@ -30,8 +35,8 @@ public class PetOwnerResource {
     @Transactional()
     @GetMapping("/name")
     public ResponseEntity<List<PetOwnerDTO>> findPetOwnerByName(@RequestParam String name) {
-        PetOwnerDTO petOwnerDTO = petOwnerService.findPetOwnerByName(name);
-        return ResponseEntity.ok(List.of(petOwnerDTO));
+        List<PetOwnerDTO> ownerDTOs = petOwnerService.findPetOwnersByName(name);
+        return ResponseEntity.ok(ownerDTOs);
     }
 
     @Transactional()
@@ -69,5 +74,11 @@ public class PetOwnerResource {
     public String removeAssociationPO(@PathVariable Long petOwnerId, @PathVariable Long petId) {
         petOwnerService.removeAssociationPO(petOwnerId, petId);
         return "Association between PetOwner and Pet removed successfully.";
+    }
+
+    @GetMapping("/{ownerId}/pets")
+    public ResponseEntity<List<PetDTO>> getPetsByOwner(@PathVariable Long ownerId) {
+        List<PetDTO> pets = petOwnerService.getPetsByOwnerId(ownerId);
+        return ResponseEntity.ok(pets);
     }
 }

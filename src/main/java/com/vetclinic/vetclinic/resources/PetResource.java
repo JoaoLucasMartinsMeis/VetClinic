@@ -1,7 +1,11 @@
 package com.vetclinic.vetclinic.resources;
 
 import com.vetclinic.vetclinic.dtos.PetDTO;
+import com.vetclinic.vetclinic.dtos.PetOwnerDTO;
 import com.vetclinic.vetclinic.models.Pet;
+import com.vetclinic.vetclinic.models.PetOwner;
+import com.vetclinic.vetclinic.repositories.PetRepository;
+import com.vetclinic.vetclinic.services.PetOwnerService;
 import com.vetclinic.vetclinic.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/vetclinic/pets")
 public class PetResource {
@@ -25,17 +31,17 @@ public class PetResource {
         return ResponseEntity.ok(petService.convertPettoPetDTO(pet));
     }
 
+    @Transactional()
+    @GetMapping("/name")
+    public ResponseEntity<List<PetDTO>> findPetByName(@RequestParam String name) {
+        List<PetDTO> petDTOs = petService.findPetsByName(name);
+        return ResponseEntity.ok(petDTOs);
+    }
+
     @GetMapping()
     public ResponseEntity<List<PetDTO>> findAllPets() {
         List<PetDTO> petDTOs = petService.findAllPets();
         return ResponseEntity.ok(petDTOs);
-    }
-
-    @Transactional()
-    @GetMapping("/name")
-    public ResponseEntity<List<PetDTO>> findPetByName(@RequestParam String name) {
-        PetDTO petDTO = petService.findPetByName(name);
-        return ResponseEntity.ok(List.of(petDTO));
     }
 
     @Transactional
@@ -67,5 +73,11 @@ public class PetResource {
     public String removeAssociation(@PathVariable Long petId, @PathVariable Long petOwnerId) {
         petService.removeAssociation(petId, petOwnerId);
         return "Association between Pet and PetOwner removed successfully.";
+    }
+
+    @GetMapping("/{petId}/owners")
+    public ResponseEntity<List<PetOwnerDTO>> getOwnersByPet(@PathVariable Long petId) {
+        List<PetOwnerDTO> owners = petService.getOwnersByPetId(petId);
+        return ResponseEntity.ok(owners);
     }
 }

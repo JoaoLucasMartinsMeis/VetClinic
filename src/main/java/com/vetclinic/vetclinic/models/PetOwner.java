@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -24,8 +21,6 @@ public class PetOwner {
     private String email;
     private String phone;
     private String address;
-
-    public PetOwner() {}
 
     public PetOwner(Long id, String cpf, String name, String email, String phone, String address) {
         this.cpf = cpf;
@@ -57,16 +52,17 @@ public class PetOwner {
         return Objects.hash(id);
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "petOwner_pet",
-            joinColumns = @JoinColumn(name = "petOwner_id"),
-            inverseJoinColumns = @JoinColumn(name = "pet_id")
-    )
+    @ManyToMany(mappedBy = "petOwners")
     private Set<Pet> pets = new HashSet<>();
 
-    @OneToMany
-    private List<Consultation> consultationsO;
+    @OneToMany(mappedBy = "petOwners", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Consultation> consultationsO = new ArrayList<>();
+
+    // Construtor que inicializa as listas
+    public PetOwner() {
+        this.pets = new HashSet<>();
+        this.consultationsO = new ArrayList<>();
+    }
 
     @Override
     public String toString() {

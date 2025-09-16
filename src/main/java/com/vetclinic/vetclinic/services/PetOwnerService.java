@@ -1,5 +1,6 @@
 package com.vetclinic.vetclinic.services;
 
+import com.vetclinic.vetclinic.dtos.PetDTO;
 import com.vetclinic.vetclinic.dtos.PetOwnerDTO;
 import com.vetclinic.vetclinic.models.Pet;
 import com.vetclinic.vetclinic.models.PetOwner;
@@ -9,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,7 @@ public class PetOwnerService {
     private PetOwnerRepository petOwnerRepository;
     @Autowired
     private PetService petService;
+    @Autowired
     private PetRepository petRepository;
 
     public PetOwnerDTO savePetOwner(PetOwnerDTO petOwnerDTO) {
@@ -28,10 +31,19 @@ public class PetOwnerService {
         return convertPetOwnertoPetOwnerDTO(petOwner);
     }
 
-    public PetOwnerDTO findPetOwnerByName(String name) {
-        return convertPetOwnertoPetOwnerDTO(petOwnerRepository.findByName(name)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Pet owner not found")));
+    public List<PetOwnerDTO> findPetOwnersByName(String name) {
+        List<PetOwner> owners = petOwnerRepository.findByNameContainingIgnoreCase(name);
+        if (owners == null || owners.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return owners.stream()
+                .map(this::convertPetOwnertoPetOwnerDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<PetOwnerDTO> findPetOwnerAll() {
+        List<PetOwner> petOwners = petOwnerRepository.findAll();
+        return petOwners.stream().map(this::convertPetOwnertoPetOwnerDTO).collect(Collectors.toList());
     }
 
     public PetOwnerDTO updatePetOwner(PetOwnerDTO petOwnerDTO) {
@@ -79,6 +91,24 @@ public class PetOwnerService {
                         new IllegalArgumentException("Pet owner not found"));
     }
 
+    public List<PetDTO> getPetsByOwnerId(Long ownerId) {
+        PetOwner owner = findPetOwnerById(ownerId);
+        if (owner.getPets() == null || owner.getPets().isEmpty()) {
+            return Collections.emptyList();
+        }
+        return owner.getPets().stream()
+                .map(pet -> {
+                    PetDTO dto = new PetDTO();
+                    dto.setId(pet.getId());
+                    dto.setName(pet.getName());
+                    dto.setAnimal(pet.getAnimal());
+                    dto.setBreed(pet.getBreed());
+                    // Apenas dados básicos para evitar loop
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
+
     public PetOwner convertPetOwnerDTOtoPetOwner(PetOwnerDTO petOwnerDTO) {
         PetOwner petOwner = new PetOwner();
         petOwner.setId(petOwnerDTO.getId());
@@ -96,16 +126,9 @@ public class PetOwnerService {
         petOwnerDTO.setId(petOwner.getId());
         petOwnerDTO.setName(petOwner.getName());
         petOwnerDTO.setCpf(petOwner.getCpf());
-        petOwnerDTO.setName(petOwner.getName());
         petOwnerDTO.setEmail(petOwner.getEmail());
         petOwnerDTO.setPhone(petOwner.getPhone());
         petOwnerDTO.setAddress(petOwner.getAddress());
-        //petOwnerDTO.setPets(petService.convertListPetT0PetDTO(petOwner.getPets()));
         return petOwnerDTO;
-    }
-
-    public List<PetOwnerDTO> findPetOwnerAll() {
-        List<PetOwner> petOwners = petOwnerRepository.findAll();
-        return petOwners.stream().map(this::convertPetOwnertoPetOwnerDTO).collect(Collectors.toList());
     }
 }
