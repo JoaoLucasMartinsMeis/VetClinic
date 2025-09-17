@@ -5,8 +5,8 @@ public enum PetSize {
     SMALL("Small"),
     MEDIUM("Medium"),
     LARGE("Large"),
-    XLARGE("X Large"),
-    XXLARGE("XX Large");
+    XLARGE("XLarge"),
+    XXLARGE("XXLarge");
 
 
     private final String description;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://127.0.0.1:5501")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/vetclinic/users")
 public class UserResource {
